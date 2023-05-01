@@ -1,12 +1,27 @@
 package dev.pos4.pos;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Document(collection = "table")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class table {
 
-    public int tableNumber;
-    public int numberOfSeats;
-    public String description;
-    public Ticket tableTicket;
-    public int status;
+    private int tableNumber;
+    private int numberOfSeats;
+    private String description;
+    private Ticket tableTicket;
+    private int status;
+
+    @Id
+    private ObjectId id;
     
 
     public table(int tNum, int sNum) { 
