@@ -3,6 +3,7 @@ package dev.pos4.pos;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,8 +18,10 @@ public class table {
     private int tableNumber;
     private int numberOfSeats;
     private String description;
-    private Ticket tableTicket;
     private int status;
+
+    @DocumentReference
+    private Ticket tableTicket;
 
     @Id
     private ObjectId id;

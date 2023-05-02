@@ -3,10 +3,13 @@ package dev.pos4.pos;
 import java.util.*;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +33,11 @@ public class tableController {
     @GetMapping("/{tableNumber}")
     public ResponseEntity<Optional<table>> getSingleTable(@PathVariable int tableNumber) {
         return new ResponseEntity<Optional<table>>(tService.singleTable(tableNumber), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<table> createTable(@RequestBody Pair<Integer,Integer> payload) {
+        return new ResponseEntity<table>(tService.createTable(payload.getFirst(), payload.getSecond()), HttpStatus.OK);
     }
     
 }
